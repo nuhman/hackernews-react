@@ -7,9 +7,12 @@ import AwesomeDebouncePromise from 'awesome-debounce-promise';
 // Hacker News API constants
 
 const DEFAULT_QUERY = "blockchain";
+const DEFAULT_PAGE = 0;
 const PATH_BASE = 'https://hn.algolia.com/api/v1';
 const PATH_SEARCH = '/search';
 const PARAM_SEARCH = 'query=';
+const PARAM_PAGE = 'page=';
+
 let url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
 
@@ -47,15 +50,12 @@ class App extends Component {
     });
   }
 
-  fetchSearchTopStories = async searchText => {
-    url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchText}`;        
+  fetchSearchTopStories = (searchText, page) => {
+    if(page < 0) page = 0;
+    url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchText}&${PARAM_PAGE}${page}`;        
     fetch(url)
       .then(response => response.json())
-      .then(result => this.setSearchTopStories(result));
-      //return await searchAPIDebounced(url);
-      //console.log(result);
-      //console.log(result.json());
-      //result.json().then(res => this.setSearchTopStories(res));
+      .then(result => this.setSearchTopStories(result));      
   }
 
   setSearchText(e){
@@ -65,7 +65,7 @@ class App extends Component {
   }
 
   handleSearch(){        
-    this.fetchSearchTopStories(this.state.searchText);      
+    this.fetchSearchTopStories(this.state.searchText, DEFAULT_PAGE);      
   }
 
   handleRemove(id){   
@@ -81,7 +81,7 @@ class App extends Component {
     const {
       searchText
     } = this.state;
-    this.fetchSearchTopStories(searchText);    
+    this.fetchSearchTopStories(searchText, DEFAULT_PAGE);    
   }
 
 
@@ -89,8 +89,8 @@ class App extends Component {
     const {      
       result,
       searchText
-    } = this.state;    
-
+    } = this.state;
+    const page = (result && result.page) || 0;
     return (
       <div className="App">
         <header className="App-header"> 
@@ -99,7 +99,13 @@ class App extends Component {
           {result ? 
             (
               result.hits.length ? 
-                <Table hits={result.hits} searchText={searchText} handleRemove={this.handleRemove}/>
+                (
+                  <div>
+                    <Table hits={result.hits} searchText={searchText} handleRemove={this.handleRemove}/>
+                    <Button onClick={() => this.fetchSearchTopStories(searchText, page - 1)}>Previous</Button>
+                    <Button onClick={() => this.fetchSearchTopStories(searchText, page + 1)}>Next</Button>
+                  </div>
+                )
                   :
                 <p>No Results</p>
             ) 
