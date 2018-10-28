@@ -112,10 +112,14 @@ class App extends Component {
             (
               result.hits.length ? 
                 (
-                  <div>
+                  <div className='container'>
                     <Table hits={result.hits} searchText={searchText} handleRemove={this.handleRemove}/>
-                    <Button onClick={() => this.fetchSearchTopStories(searchText, page - 1)}>Previous</Button>
-                    <Button onClick={() => this.fetchSearchTopStories(searchText, page + 1)}>Next</Button>
+                    <Button className='btn waves-effect waves-light btnPrev'onClick={() => this.fetchSearchTopStories(searchText, page - 1)}>
+                        Previous<i className='material-icons left'>navigate_before</i>
+                    </Button>
+                    <Button className='btn waves-effect waves-light' onClick={() => this.fetchSearchTopStories(searchText, page + 1)}>
+                        Next<i className='material-icons right'>navigate_next</i>
+                    </Button>
                   </div>
                 )
                   :

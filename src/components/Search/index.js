@@ -10,7 +10,7 @@ const Search = ({value, onChange, handleSearch}) => {
               value={value}
               onChange={onChange}
             />
-            <Button onClick={handleSearch} className='btn-floating btn-large waves-effect waves-light red'>
+            <Button onClick={handleSearch} className='btn-floating btn-large waves-effect waves-light'>
               <i className='material-icons'>search</i>
           </Button>
         </div> 

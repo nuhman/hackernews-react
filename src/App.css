@@ -2,6 +2,7 @@
   text-align: center;
   font-family: CoreSans, Arial, sans-serif;
   font-size: 18px;  
+  background-color: #34495e;
 }
 
 .App-logo {
@@ -10,7 +11,7 @@
 }
 
 .App-header {
-  background-color: #34495e;
+  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -30,4 +31,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.btnPrev{
+  margin-right: 10px;
+}
+
+.container, .App{
+  margin-bottom:50px;
 }
