@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import AwesomeDebouncePromise from 'awesome-debounce-promise';
+import Button from './components/Button';
+import Table from './components/Table';
+import Search from './components/Search';
+
+
+//import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 // Hacker News API constants
 
@@ -32,6 +37,7 @@ class App extends Component {
     this.state = {      
       result: null,
       searchText: DEFAULT_QUERY,
+      cacheKey: '',
     };  
 
     // binding class methods
@@ -64,7 +70,10 @@ class App extends Component {
     });
   }
 
-  handleSearch(){        
+  handleSearch(){       
+    this.setState({
+      cacheKey: this.state.searchText
+    }); 
     this.fetchSearchTopStories(this.state.searchText, DEFAULT_PAGE);      
   }
 
@@ -81,6 +90,9 @@ class App extends Component {
     const {
       searchText
     } = this.state;
+    this.setState({
+      cacheKey: searchText
+    });
     this.fetchSearchTopStories(searchText, DEFAULT_PAGE);    
   }
 
@@ -119,56 +131,5 @@ class App extends Component {
     );
   }
 }
- 
-const Search = ({value, onChange, handleSearch}) => {  
-  return(
-    <div>
-        <input type="text" 
-            placeholder="search by title" 
-            value={value}
-            onChange={onChange}
-          />
-          <Button onClick={handleSearch}>
-            Search
-        </Button>
-      </div> 
-  );  
-}
-
-const Table = ({hits, handleRemove}) => {    
-  return(
-    <div>
-      {//hits.filter(isSearched(searchText)).map(item => {
-        hits.map(item => {
-        return (
-          <div key={item.objectID}>
-            <p><a href={item.url}>{item.title}</a></p>
-            <p>By {item.author}</p>
-            <p>{item.points} Likes, {item.num_comments} Comments</p>                        
-            <p>
-            <Button onClick={() => handleRemove(item.objectID)}>
-                Remove
-            </Button>
-            </p>
-          </div>
-        )                    
-      })}
-    </div>
-  );  
-}
-
-
-const Button = ({children, onClick, className=''}) =>  {  
-  return(
-    <button
-      onClick={onClick}
-      className={className}
-      type="button"
-    >
-      {children}
-    </button>
-  );  
-}
-
 
 export default App;
