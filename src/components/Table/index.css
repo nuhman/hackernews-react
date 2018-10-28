@@ -1,0 +1,11 @@
+.news-details {
+    text-align: center;
+}
+span{
+    display: inline-block;
+    margin-right: 20px;
+    color: #000;
+}
+i{
+    color: rgb(224, 218, 218);
+}
