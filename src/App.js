@@ -14,11 +14,11 @@ let url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
 
 // higher order functions
-const searchAPI = url => {  
-  return fetch(url);
-}
+// const searchAPI = url => {  
+//   return fetch(url);
+// }
 
-const searchAPIDebounced = AwesomeDebouncePromise(searchAPI, 500);
+// const searchAPIDebounced = AwesomeDebouncePromise(searchAPI, 500);
 
 
 class App extends Component {
