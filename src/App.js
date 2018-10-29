@@ -129,7 +129,7 @@ class App extends Component {
             ) 
             :
             (
-              <p>Loading... Please Wait!</p>
+              <p>Loading... <i className='material-icons right'>loop</i></p>
             )
           }          
         </header>

@@ -34,7 +34,12 @@ exports[`App Tests snapshots 1`] = `
       </button>
     </div>
     <p>
-      Loading... Please Wait!
+      Loading... 
+      <i
+        className="material-icons right"
+      >
+        loop
+      </i>
     </p>
   </header>
 </div>
