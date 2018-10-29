@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from '../Button';
 import 'materialize-css/dist/css/materialize.min.css';
 import './index.css';
@@ -33,5 +34,9 @@ const Table = ({hits, handleRemove}) => {
       </div>
     );  
   }
+
+  Table.protoTypes = {
+    handleRemove : PropTypes.func.isRequired
+  };
 
 export default Table;

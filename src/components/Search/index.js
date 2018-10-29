@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '../Button';
+import PropTypes from 'prop-types';
 import './index.css';
 
 const Search = ({value, onChange, handleSearch}) => {  
@@ -16,5 +17,11 @@ const Search = ({value, onChange, handleSearch}) => {
         </div> 
     );  
   }
+
+Search.protoTypes = {
+  onChange : PropTypes.func,
+  value: PropTypes.string,
+  handleSearch: PropTypes.func.isRequired
+};
 
 export default Search;
