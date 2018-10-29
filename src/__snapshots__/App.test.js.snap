@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Tests snapshots 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="logo"
+      className="App-logo"
+      src="logo.svg"
+    />
+    <div
+      className="search-div"
+    >
+      <input
+        onChange={[Function]}
+        placeholder="search by title"
+        type="text"
+        value="blockchain"
+      />
+      <button
+        className="btn-floating btn-large waves-effect waves-light"
+        onClick={[Function]}
+        type="button"
+      >
+        <i
+          className="material-icons"
+        >
+          search
+        </i>
+      </button>
+    </div>
+    <p>
+      Loading... Please Wait!
+    </p>
+  </header>
+</div>
+`;
