@@ -17,7 +17,7 @@ import {
   PATH_BASE,
   PATH_SEARCH,
   PARAM_SEARCH,
-  PARAM_PAGE
+  PARAM_PAGE,  
 } from './constants';
 
 let url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
@@ -40,6 +40,7 @@ class App extends Component {
       result: null,
       searchText: DEFAULT_QUERY,
       cacheKey: '',
+      sortKey: 'NONE'
     };  
 
     // binding class methods
@@ -48,9 +49,14 @@ class App extends Component {
     this.setSearchTopStories = this.setSearchTopStories.bind(this);
     this.fetchSearchTopStories = this.fetchSearchTopStories.bind(this);    
     this.setSearchText = this.setSearchText.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   // class methods
+
+  handleSort(sortKey){
+    this.setState({sortKey});
+  }
 
   setSearchTopStories(result){    
     this.setState({
@@ -102,7 +108,8 @@ class App extends Component {
   render() {
     const {      
       result,
-      searchText
+      searchText,
+      sortKey
     } = this.state;
     const page = (result && result.page) || 0;
     return (
@@ -115,7 +122,7 @@ class App extends Component {
               result.hits.length ? 
                 (
                   <div className='container'>
-                    <Table hits={result.hits} searchText={searchText} handleRemove={this.handleRemove}/>
+                    <Table hits={result.hits} searchText={searchText} handleRemove={this.handleRemove} sortKey={sortKey} handleSort={this.handleSort}/>
                     <Button className='btn waves-effect waves-light btnPrev'onClick={() => this.fetchSearchTopStories(searchText, page - 1)}>
                         Previous<i className='material-icons left'>navigate_before</i>
                     </Button>
