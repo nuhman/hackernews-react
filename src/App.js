@@ -11,12 +11,14 @@ import Search from './components/Search';
 
 // Hacker News API constants
 
-const DEFAULT_QUERY = "blockchain";
-const DEFAULT_PAGE = 0;
-const PATH_BASE = 'https://hn.algolia.com/api/v1';
-const PATH_SEARCH = '/search';
-const PARAM_SEARCH = 'query=';
-const PARAM_PAGE = 'page=';
+import {
+  DEFAULT_QUERY,
+  DEFAULT_PAGE,
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE
+} from './constants';
 
 let url = `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${DEFAULT_QUERY}`;
 
